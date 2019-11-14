@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Listening room.fm</title>
+<title>listeningroom.</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
 <script src="listeningroom.js"></script>
 
 <link rel="stylesheet" href="style.css">
@@ -11,14 +12,11 @@
 <link rel="stylesheet" href="normalize.css">
 </head>
 <body>
-	
-	<div class="container" ng-app="myApp" ng-controller="appCtrl as ctrl">
-
-		<br>
-		<h1> listeningroom.fm </h1>
-
+	<header> <h1>listeningroom.</h1> </header>
+	<main ng-app="myApp" ng-controller="appCtrl as ctrl">
 		<div class="musicplayer">
 
+			<!--Take album art and turn it into a cd shape and when a song is playing, make it rotate like a record player-->
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" ng-class="{'playing' : ctrl.isPlaying}">
             	<defs>
                 	<mask id="shape-mask">
@@ -29,8 +27,8 @@
             	<image width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xlink:href="albumart.jpg" mask="url(#shape-mask)"></image>
        		</svg>
         		
-
-			<br>
+       		<!--Controls for the player-->
+			<p>
 			<audio id="player" src="song.mp3"></audio>
 			<div>
 				<button onclick="document.getElementById('player').play()" ng-click="ctrl.playAudio()">  ▶ </button>
@@ -41,8 +39,6 @@
 			<p><p> Use the buttons above to start enjoying. <p>
 
 		</div>
-
-
 		<div class="playlist">
 			Start adding some songs to create a playlist.
 				<ul>
@@ -64,8 +60,10 @@
 
 			</ul>
 		</div>
-
-	</div>
+	</main>
+	<footer>
+			<h8> playing from local mp3 file for now ... </h8>
+	</footer>
 	
 </body>
 </html>

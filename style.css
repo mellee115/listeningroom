@@ -1,25 +1,27 @@
-body{
-	margin:0;
+html, body {
+ 	margin: 0;
+	padding: 0;
 	background:#d8d8d8;
 }
 
-div{
-	box-sizing:border-box;
-}
-
 h1{
+	text-align: center;
 	font-family: "Georgia";
 	font-weight: bold;
 }
-.container{
-	position: center;
+
+main{
+	display: flex;
 	width: 50%;
-	height: 100%;
+	height: 400px;
 	background-color:#FFFFFF;
 	padding: 40px;
-	margin: 10px 10px;
+	margin: 0px auto;
 }
 
+footer{
+	margin-top: 10px;
+}
 .playing{
 	-webkit-animation: rotation 2s infinite linear;
 	animation: rotation 3s infinite linear;
@@ -41,12 +43,10 @@ h1{
 
 .playlist{
 	float: right;
-	padding: 50px;
-	margin:20px 0px;
-	height: 100%;
 }
 
 .musicplayer{
 	float: left;
 	padding: 50px;
 }
+
