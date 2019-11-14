@@ -1,0 +1,52 @@
+body{
+	margin:0;
+	background:#d8d8d8;
+}
+
+div{
+	box-sizing:border-box;
+}
+
+h1{
+	font-family: "Georgia";
+	font-weight: bold;
+}
+.container{
+	position: center;
+	width: 50%;
+	height: 100%;
+	background-color:#FFFFFF;
+	padding: 40px;
+	margin: 10px 10px;
+}
+
+.playing{
+	-webkit-animation: rotation 2s infinite linear;
+	animation: rotation 3s infinite linear;
+}
+
+@-webkit-keyframes rotation {
+	from {-webkit-transform: rotate(0deg);}
+	to   {-webkit-transform: rotate(359deg);}
+}
+
+@keyframes rotation {
+	from {-ms-transform: rotate(0deg);}
+	to   {-ms-transform: rotate(359deg);}
+
+	from {transform: rotate(0deg);}
+	to   {transform: rotate(359deg);}
+}
+
+
+.playlist{
+	float: right;
+	padding: 50px;
+	margin:20px 0px;
+	height: 100%;
+}
+
+.musicplayer{
+	float: left;
+	padding: 50px;
+}
