@@ -4,7 +4,7 @@
 <title>listeningroom.</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<script src="listeningroom.js"></script>
+
 
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="skeleton.css">
@@ -13,7 +13,8 @@
 <body>
 	<header> <h1>listeningroom.</h1> </header>
 
-	<main ng-app="myApp" ng-controller="appCtrl as ctrl">
+	<div ng-app="myApp" ng-controller="appCtrl as ctrl">
+		<main>
 		<div class="musicplayer">
 
 			<!--Take album art and turn it into a cd shape and when a song is playing, make it rotate like a record player-->
@@ -28,7 +29,7 @@
        		</svg>
 			<p>
 
-			<audio id="player" src="song.mp3" (ontimeupdate)="updateBar()"></audio>
+			<audio id="player" src="song.mp3"></audio>
 			<!--Progress bar-->
 			<div id="bar" class="progress-bar" ng-class="{'so-far' : ctrl.isPlaying}"></div>
 			<p>
@@ -61,10 +62,13 @@
 				</li>
 			</ul>
 		</div>
-	</main>
-
-	<footer>
+		</main>
+		<footer>
 			<h6> playing from local mp3 file for now ... </h6>
-	</footer>
+		</footer>
+	</div>
+
+	
+	<script src="listeningroom.js"></script>
 </body>
 </html>

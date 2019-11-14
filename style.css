@@ -60,4 +60,5 @@ footer{
 
 .so-far{
 	background-color: #4CD0C0;
+	transition: width .1s linear;
 }
