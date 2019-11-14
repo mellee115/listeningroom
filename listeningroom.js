@@ -29,3 +29,13 @@ appCtrl.prototype.playAudio = function(){
 appCtrl.prototype.pauseAudio = function(){ 
 	this.isPlaying = !this.isPlaying;
 } 
+
+//calculate the fill the for the progress bar
+appCtrl.prototype.updateBar = function(){
+	let aud = document.getElementById('player');
+	let pb = document.getElementById('bar');
+
+	let val = (aud.currentTime / aud.duration) * 100;
+	console.log(val);
+	pb.css('width', val + 'px');
+}
