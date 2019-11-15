@@ -1,19 +1,20 @@
 'use strict'
 
+//The Song class
+function Song(artist, name, albumart, src){
+	this.artist = artist;
+	this.name = name;
+	this.albumart = albumart;
+	this.src = src;
+}
+
 //Controller with the boolean attribute isPlaying to indicate a song is playing and an array of Song objects
 function appCtrl(){
-	this.isPlaying = false;
-	this.playlist = [];
+	this.isPlaying = false; 
+	this.playlist = [(new Song("Coldplay","Violet Hill","albumart.jpg","song.mp3"))];
 }
-angular.module('myApp',[]).controller('appCtrl', appCtrl);
 
-//The Song class
-function Song(){
-	this.artist;
-	this.name;
-	this.length;
-	this.album;
-}
+angular.module('myApp',[]).controller('appCtrl', appCtrl);
 
 //the addSong method pushes a Song object to the playlist array in the controller
 appCtrl.prototype.addSong = function(songObject){
