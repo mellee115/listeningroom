@@ -1,6 +1,6 @@
 'use strict'
 
-//The Song class
+//The Song constructor
 function Song(artist, name, albumart, src){
 	this.artist = artist;
 	this.name = name;
@@ -11,7 +11,9 @@ function Song(artist, name, albumart, src){
 //Controller with the boolean attribute isPlaying to indicate a song is playing and an array of Song objects
 function appCtrl(){
 	this.isPlaying = false; 
-	this.playlist = [(new Song("Coldplay","Violet Hill","albumart.jpg","song.mp3"))];
+	this.playlist = [(new Song("Coldplay","Violet Hill","Coldplay - albumart.jpg","Coldplay - Violet Hill"), 
+		(new Song("Beirut", "Perth", "Beirut - albumart.png", "Beirut - Perth.mp3"),
+		(new Song("Fleet Foxes", "White Winter Hymnal", "Fleet Foxes - albumart.jpg", "Fleet Foxes - White Winter Hymnal.mp3"))))];
 }
 
 angular.module('myApp',[]).controller('appCtrl', appCtrl);
@@ -42,9 +44,7 @@ aud.addEventListener("playing", function(_event) {
   	updateBar(duration, aud);
 });
 
-aud.addEventListener("pause", function(_event) {
-  	clearTimeout(timer);
-});
+aud.addEventListener("pause", function(_event) { clearTimeout(timer);});
 
 let updateBar = function(duration, audioElement) {
 	let progress = document.getElementById("bar");
