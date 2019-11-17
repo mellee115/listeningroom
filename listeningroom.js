@@ -8,12 +8,18 @@ function Song(artist, name, albumart, src){
 	this.src = src;
 }
 
-//Controller with the boolean attribute isPlaying to indicate a song is playing and an array of Song objects
+//Controller with the boolean attribute isPlaying to indicate a song is playing,
+// an array of Song objects called playlist,
+// and a integer representing the position in the playlist
 function appCtrl(){
 	this.isPlaying = false; 
-	this.playlist = [(new Song("Coldplay","Violet Hill","Coldplay - albumart.jpg","Coldplay - Violet Hill"), 
-		(new Song("Beirut", "Perth", "Beirut - albumart.png", "Beirut - Perth.mp3"),
-		(new Song("Fleet Foxes", "White Winter Hymnal", "Fleet Foxes - albumart.jpg", "Fleet Foxes - White Winter Hymnal.mp3"))))];
+	this.playlist = [(new Song("Coldplay","Violet Hill","Coldplay - albumart.jpg","Coldplay - Violet Hill.mp3")), 
+		(new Song("Beirut", "Perth", "Beirut - albumart.png", "Beirut - Perth.mp3")),
+		(new Song("Fleet Foxes", "White Winter Hymnal", "Fleet Foxes - albumart.jpg", "Fleet Foxes - White Winter Hymnal.mp3")),
+		(new Song("BADBADNOTGOOD", "Time Moves Slow ft. Sam Herring", "BADBADNOTGOOD - albumart.jpg", "BADBADNOTGOOD - Time Moves Slow ft. Sam Herring.mp3")),
+		(new Song ("Skyrim", "Secunda", "Skyrim - albumart.jpg", "Skyrim - Secunda.mp3")),
+		(new Song ("Chrono Trigger", "The Day The World Revived", "Chrono Trigger - albumart.jpg", "Chrono Trigger - The Day The World Revived.mp3"))];
+	this.playlistPos = 0;
 }
 
 angular.module('myApp',[]).controller('appCtrl', appCtrl);
@@ -33,6 +39,13 @@ appCtrl.prototype.playAudio = function(){
 appCtrl.prototype.pauseAudio = function(){ 
 	this.isPlaying = !this.isPlaying;
 } 
+
+//nextSong method changes increments the playlistPos 
+appCtrl.prototype.nextSong = function(){
+	//not fully implemented currently
+	++this.playlistPos;
+}
+
 
 //calculate the fill the for the progress bar using the addEventListner HTML DOM method
 let timer;
