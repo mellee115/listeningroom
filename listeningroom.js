@@ -10,7 +10,7 @@ function Song(artist, name, albumart, src){
 
 //Controller with the boolean attribute isPlaying to indicate a song is playing,
 // an array of Song objects called playlist,
-// and a integer representing the position in the playlist
+// and an integer representing the position in the playlist
 function appCtrl(){
 	this.isPlaying = false; 
 	this.playlist = [(new Song("Coldplay","Violet Hill","Coldplay - albumart.jpg","Coldplay - Violet Hill.mp3")), 
@@ -26,24 +26,31 @@ angular.module('myApp',[]).controller('appCtrl', appCtrl);
 
 //the addSong method pushes a Song object to the playlist array in the controller
 appCtrl.prototype.addSong = function(songObject){
-	this.playlist.push();
+
+	//not implemented currently
 }
 
 //play method changes the boolean to true to indicate a song is playing
 appCtrl.prototype.playAudio = function(){
-	this.isPlaying = !this.isPlaying;
-
+	if(!this.isPlaying){
+		this.isPlaying = !this.isPlaying
+	};
+	document.getElementById('player').load();
+	document.getElementById('player').play();
 } 
 
 //pause method changes the boolean back to the state of false indicating no song is playing
 appCtrl.prototype.pauseAudio = function(){ 
-	this.isPlaying = !this.isPlaying;
+	if(this.isPlaying){
+		document.getElementById('player').pause();
+		this.isPlaying = !this.isPlaying;
+	}
 } 
 
 //nextSong method changes increments the playlistPos 
 appCtrl.prototype.nextSong = function(){
-	//not fully implemented currently
 	++this.playlistPos;
+	this.playAudio();
 }
 
 
@@ -57,11 +64,20 @@ aud.addEventListener("playing", function(_event) {
   	updateBar(duration, aud);
 });
 
-aud.addEventListener("pause", function(_event) { clearTimeout(timer);});
+aud.addEventListener("pause", function(_event) { 
+	clearTimeout(timer);
+});
+
+//advances to the next song in playlist automatically when song ends
+aud.addEventListener("ended", function(_event){
+	//alert("song has ended");
+	//aud.currentTime = 0;
+	//appCtrl.prototype.nextSong();
+});
 
 let updateBar = function(duration, audioElement) {
 	let progress = document.getElementById("bar");
-	let incr = 10/duration;
+	let incr = 10 / duration;
 	percent = incr * audioElement.currentTime * 10;
 	progress.style.width = percent + '%';
 	startTimer(duration, audioElement);

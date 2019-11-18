@@ -5,15 +5,13 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
-
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="skeleton.css">
 <link rel="stylesheet" href="normalize.css">
 </head>
 <body>
-	<header> <h1>listeningroom.</h1> </header>
-
 	<div ng-app="myApp" ng-controller="appCtrl as ctrl">
+		<header> <h1>listeningroom.</h1> </header>
 		<main>
 		<div class="musicplayer">
 
@@ -30,17 +28,17 @@
 			<p>
 
 			<!--Audio HTML element-->
-			<audio id="player" src="{{ctrl.playlist[ctrl.playlistPos].src}}"></audio>
-			
+			<audio id="player"><source src="{{ctrl.playlist[ctrl.playlistPos].src}}" type="audio/mpeg"></audio>
+
 			<!--Progress bar-->
 			<div id="bar" class="progress-bar" ng-class="{'so-far' : ctrl.isPlaying}"></div>
 			<p>
 
 			<!--Controls for the player-->
 			<div>
-				<button onclick="document.getElementById('player').play()" ng-click="ctrl.playAudio()">  ▶ </button>
-				<button onclick="document.getElementById('player').pause()" ng-click="ctrl.pauseAudio()">  || </button>
-				<button> ⯮ </button>
+				<button ng-click="ctrl.playAudio()">  ▶ </button>
+				<button ng-click="ctrl.pauseAudio()">  || </button>
+				<button ng-click="ctrl.nextSong()"> ⯮ </button>
 			</div>
 
 			<p><p> Use the buttons above to start enjoying. <p>
@@ -66,7 +64,7 @@
 		</div>
 		</main>
 		<footer>
-			<h6> playing from local mp3 file for now ... </h6>
+			<h6> playing from a local mp3 file for now ... </h6>
 		</footer>
 	</div>
 
