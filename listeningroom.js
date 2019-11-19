@@ -64,6 +64,12 @@ appCtrl.prototype.pauseAudio = function(){
 
 //nextSong method changes increments the playlistPos 
 appCtrl.prototype.nextSong = function(){
+
+	//don't allow the user to click ahead if the end of playlist is reached
+	if((this.playlistPos + 1) == this.playlist.length){
+		return;
+	}
+
 	aud.pause();
 	percent = 0;
 	clearTimeout(timer);
