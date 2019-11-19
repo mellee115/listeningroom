@@ -25,11 +25,15 @@
             	</defs>
             	<image width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xlink:href="{{ctrl.playlist[ctrl.playlistPos].albumart}}" mask="url(#shape-mask)"></image>
        		</svg>
-			<p>
-
+			
 			<!--Audio HTML element-->
 			<audio id="player"><source src="{{ctrl.playlist[ctrl.playlistPos].src}}"></audio>
 
+			<!--Show what song is currently playing-->
+			<div class="currentSong">
+			{{ctrl.playlist[ctrl.playlistPos].artist}} - {{ctrl.playlist[ctrl.playlistPos].name}}
+			</div>
+	
 			<!--Progress bar-->
 			<div id="bar" class="progress-bar" ng-class="{'so-far' : ctrl.isPlaying}"></div>
 			<p>
@@ -40,8 +44,6 @@
 				<button ng-click="ctrl.pauseAudio()">  || </button>
 				<button ng-click="ctrl.nextSong()"> ⯮ </button>
 			</div>
-
-			<p><p> Use the buttons above to start enjoying. <p>
 
 		</div>
 		<div class="playlist">
