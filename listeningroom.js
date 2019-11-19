@@ -13,7 +13,9 @@ function Song(artist, name, albumart, src){
 // and an integer representing the position in the playlist
 function appCtrl(){
 	this.isPlaying = false; 
-	this.playlist = [(new Song("Coldplay","Violet Hill","Coldplay - albumart.jpg","Coldplay - Violet Hill.mp3")), 
+	this.playlist = [(new Song("Super Mario World", "Game Over", "Super Mario World - albumart.jpg", "Super Mario World - Game Over.wav")),
+		(new Song("a l e x","late","a l e x - albumart.jpg", "a l e x - late.mp3")),
+		(new Song("Coldplay","Violet Hill","Coldplay - albumart.jpg","Coldplay - Violet Hill.mp3")), 
 		(new Song("Beirut", "Perth", "Beirut - albumart.png", "Beirut - Perth.mp3")),
 		(new Song("Fleet Foxes", "White Winter Hymnal", "Fleet Foxes - albumart.jpg", "Fleet Foxes - White Winter Hymnal.mp3")),
 		(new Song("BADBADNOTGOOD", "Time Moves Slow ft. Sam Herring", "BADBADNOTGOOD - albumart.jpg", "BADBADNOTGOOD - Time Moves Slow ft. Sam Herring.mp3")),
@@ -24,32 +26,49 @@ function appCtrl(){
 
 angular.module('myApp',[]).controller('appCtrl', appCtrl);
 
+let aud = document.getElementById('player');
+
 //the addSong method pushes a Song object to the playlist array in the controller
 appCtrl.prototype.addSong = function(songObject){
 
 	//not implemented currently
 }
 
-//play method changes the boolean to true to indicate a song is playing
+//playAudio method changes the boolean to true to indicate a song is playing
 appCtrl.prototype.playAudio = function(){
 	if(!this.isPlaying){
 		this.isPlaying = !this.isPlaying
 	};
-	document.getElementById('player').load();
-	document.getElementById('player').play();
+	aud.load();
+	aud.play();
+
+	//detect song end and advances to the next song in playlist automatically when song ends
+	aud.addEventListener("ended", function(_event){
+		alert("The current song has ended.");
+		
+		//automatic forwarding to next song not yet implemented
+		//alert("Calling nextSong method now.");
+		//this.nextSong();
+	});
 } 
 
-//pause method changes the boolean back to the state of false indicating no song is playing
+
+
+//pauseAudio method changes the boolean back to the state of false indicating no song is playing
 appCtrl.prototype.pauseAudio = function(){ 
 	if(this.isPlaying){
-		document.getElementById('player').pause();
+		aud.pause();
 		this.isPlaying = !this.isPlaying;
 	}
 } 
 
 //nextSong method changes increments the playlistPos 
 appCtrl.prototype.nextSong = function(){
+	aud.pause();
+	percent = 0;
+	clearTimeout(timer);
 	++this.playlistPos;
+	aud.src = this.playlist[this.playlistPos].src;
 	this.playAudio();
 }
 
@@ -57,7 +76,6 @@ appCtrl.prototype.nextSong = function(){
 //calculate the fill the for the progress bar using the addEventListner HTML DOM method
 let timer;
 let percent = 0;
-let aud = document.getElementById('player');
 
 aud.addEventListener("playing", function(_event) {
 	let duration = _event.target.duration;
@@ -66,13 +84,6 @@ aud.addEventListener("playing", function(_event) {
 
 aud.addEventListener("pause", function(_event) { 
 	clearTimeout(timer);
-});
-
-//advances to the next song in playlist automatically when song ends
-aud.addEventListener("ended", function(_event){
-	//alert("song has ended");
-	//aud.currentTime = 0;
-	//appCtrl.prototype.nextSong();
 });
 
 let updateBar = function(duration, audioElement) {
