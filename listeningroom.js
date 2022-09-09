@@ -13,14 +13,12 @@ function Song(artist, name, albumart, src){
 // and an integer representing the position in the playlist
 function appCtrl(){
 	this.isPlaying = false; 
-	this.playlist = [(new Song("Super Mario World", "Game Over", "Super Mario World - albumart.jpg", "Super Mario World - Game Over.wav")),
-		(new Song("a l e x","late","a l e x - albumart.jpg", "a l e x - late.mp3")),
-		(new Song("Coldplay","Violet Hill","Coldplay - albumart.jpg","Coldplay - Violet Hill.mp3")), 
-		(new Song("Beirut", "Perth", "Beirut - albumart.png", "Beirut - Perth.mp3")),
-		(new Song("Fleet Foxes", "White Winter Hymnal", "Fleet Foxes - albumart.jpg", "Fleet Foxes - White Winter Hymnal.mp3")),
-		(new Song("BADBADNOTGOOD", "Time Moves Slow ft. Sam Herring", "BADBADNOTGOOD - albumart.jpg", "BADBADNOTGOOD - Time Moves Slow ft. Sam Herring.mp3")),
-		(new Song ("Skyrim", "Secunda", "Skyrim - albumart.jpg", "Skyrim - Secunda.mp3")),
-		(new Song ("Chrono Trigger", "The Day The World Revived", "Chrono Trigger - albumart.jpg", "Chrono Trigger - The Day The World Revived.mp3"))];
+	this.playlist = [
+		(new Song ("Gvidon", "Mesmerizing", "Gvidon.jpg", "Gvidon - Mesmerizing.mp3")),
+		(new Song ("FASSounds", "Coding Night", "FASSounds.jpg", "FASSounds - Coding Night.mp3")),
+		(new Song ("EvgenyBardyuzha", "Autobahn", "", "EvgenyBardyuzha - Autobahn.mp3")),
+		(new Song ("Music Unlimited", "Jazzy Hip Hop Boom Bap", "", "Music Unlimited - Jazzy Hip Hop Boom Bap.mp3")),
+	];
 	this.playlistPos = 0;
 }
 

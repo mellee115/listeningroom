@@ -16,7 +16,7 @@ h6{
 main{
 	width: 50%;
 	height: 400px;
-	background-color:#FFFFFF;
+	background-color:#FFF;
 	padding: 40px;
 	margin: 0px auto;
 }
@@ -24,7 +24,7 @@ main{
 footer{
 	clear: both;
 	margin: 0 auto;
-	padding-top: : 50px auto 0;
+	padding: 1rem;
 }
 
 .playing{

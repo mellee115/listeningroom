@@ -1,76 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>listeningroom.</title>
+    <title>listeningroom.</title>
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="skeleton.css">
-<link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="skeleton.css">
+    <link rel="stylesheet" href="normalize.css">
 </head>
 <body>
-	<div ng-app="myApp" ng-controller="appCtrl as ctrl">
-		<header> <h1>listeningroom.</h1> </header>
-		<main>
-		<div class="musicplayer">
+<div ng-app="myApp" ng-controller="appCtrl as ctrl">
+    <header>
+        <h1>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="5%" height="5%">
+            <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+            <path d="M512 256c0 141.4-114.6 256-256 256S0 397.4 0 256S114.6 0 256 0S512 114.6 512 256zM256 352c-53 0-96-43-96-96s43-96 96-96s96 43 96 96s-43 96-96 96zm0 32c70.7 0 128-57.3 128-128s-57.3-128-128-128s-128 57.3-128 128s57.3 128 128 128zm0-96c17.7 0 32-14.3 32-32s-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32z"/>
+        </svg>
+        listeningroom.
+        </h1>
+    </header>
+    <main>
+        <div class="musicplayer">
+            <!--Take album art and turn it into a cd shape and when a song is playing, make it rotate like a record player-->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" ng-class="{'playing' : ctrl.isPlaying}">
+                <defs>
+                    <mask id="shape-mask">
+                        <circle id="outer" cx="50" cy="50" r="50" fill="#909090"/>
+                        <circle id="inner" cx="50" cy="50" r="10" fill="black"/>
+                    </mask>
+                </defs>
+                <image width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xlink:href="{{ctrl.playlist[ctrl.playlistPos].albumart}}" mask="url(#shape-mask)"/>
+            </svg>
 
-			<!--Take album art and turn it into a cd shape and when a song is playing, make it rotate like a record player-->
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" ng-class="{'playing' : ctrl.isPlaying}">
-            	<defs>
-                	<mask id="shape-mask">
-                    	<circle id="outer" cx="50" cy="50" r="50" fill="#909090"/>
-                    	<circle id="inner" cx="50" cy="50" r="10" fill="black"/>
-                	</mask>
-            	</defs>
-            	<image width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xlink:href="{{ctrl.playlist[ctrl.playlistPos].albumart}}" mask="url(#shape-mask)"></image>
-       		</svg>
-			
-			<!--Audio HTML element-->
-			<audio id="player"><source src="{{ctrl.playlist[ctrl.playlistPos].src}}"></audio>
+            <!--Audio HTML element-->
+            <audio id="player">
+                <source src="{{ctrl.playlist[ctrl.playlistPos].src}}">
+            </audio>
 
-			<!--Show what song is currently playing-->
-			<div class="currentSong">
-			{{ctrl.playlist[ctrl.playlistPos].artist}} - {{ctrl.playlist[ctrl.playlistPos].name}}
-			</div>
-	
-			<!--Progress bar-->
-			<div id="bar" class="progress-bar" ng-class="{'so-far' : ctrl.isPlaying}"></div>
-			<p>
+            <!--Show what song is currently playing-->
+            <div class="currentSong">
+                {{ctrl.playlist[ctrl.playlistPos].artist}} - {{ctrl.playlist[ctrl.playlistPos].name}}
+            </div>
 
-			<!--Controls for the player-->
-			<div>
-				<button ng-click="ctrl.playAudio()">  ▶ </button>
-				<button ng-click="ctrl.pauseAudio()">  || </button>
-				<button ng-click="ctrl.nextSong()"> ⯮ </button>
-			</div>
+            <!--Progress bar-->
+            <div id="bar" class="progress-bar" ng-class="{'so-far' : ctrl.isPlaying}"></div>
+            <p>
 
-		</div>
-		<div class="playlist">
-			Start adding some songs to create a playlist.
-				<ul>
-				<!--Add a new song from user input - not implemented currently-->
-				<form>
-					<div>
-						<input placeholder="Your song here..." ng-model="song">
-						<span>
+                <!--Controls for the player-->
+            <div>
+                <button ng-click="ctrl.playAudio()">&#x25B6;</button>
+                <button ng-click="ctrl.pauseAudio()"> || </button>
+                <button ng-click="ctrl.nextSong()"> >> </button>
+            </div>
+
+        </div>
+        <div class="playlist">
+            Start adding some songs to create a playlist.
+            <ul>
+                <!--Add a new song from user input - not implemented currently-->
+                <form>
+                    <div>
+                        <input placeholder="Your song here..." ng-model="song">
+                        <span>
 							<button type="submit"> add.</button>
 						</span>
-					</div>
-				</form>
-				<!--Repeat this for each song in the playlist-->
-				<li ng-repeat="song in ctrl.playlist">
-					{{song.artist}} - {{song.name}}
-				</li>
-			</ul>
-		</div>
-		</main>
-		<footer>
-			<h6> playing from a local mp3 file for now ... </h6>
-		</footer>
-	</div>
+                    </div>
+                </form>
+                <!--Repeat this for each song in the playlist-->
+                <li ng-repeat="song in ctrl.playlist">
+                    {{song.artist}} - {{song.name}}
+                </li>
+            </ul>
+        </div>
+    </main>
+    <footer>
+        <h6> playing from a local mp3 files for now ... </h6>
+    </footer>
+</div>
 
-	<script src="listeningroom.js"></script>
+<script src="listeningroom.js"></script>
 
 </body>
 </html>
